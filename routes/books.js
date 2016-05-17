@@ -28,14 +28,13 @@ router.post('/', function(req, res, next) {
 
 // GET 뉴스피드
 router.get('/', function(req, res, next) {
-  var obj = {
-    book_id : 1,
-    user_id : 2,
-    username : "hongkevin",
-    user_type : "M",
-    like_count : 14
-  };
-  res.json({data:obj});
+  BookModel.find(function(err, docs) {
+    var books = {
+      title: "newsfeed",
+      books: docs
+    };
+    res.json(books);
+  });
 });
 
 module.exports = router;
